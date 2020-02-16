@@ -1,8 +1,12 @@
 ﻿@page "/counter"
+@inject SingletonServices singleton
+@inject TransientServices transient
 
 <h1>Counter</h1>
 
 <p>Current count: @currentCount</p>
+<p>Singleton count: @singleton.Value</p>
+<p>Transient count: @transient.Value</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 <input type="number" @bind="currentCount" />
@@ -11,8 +15,7 @@
 @code {
 
     List<Movie> movies;
-    protected async override Task OnInitializedAsync() {
-        await Task.Delay(3000);
+    protected override void OnInitialized() {        
         movies = new List<Movie>() {
             new Movie(){Title = "Spider-Man: Far From Home", ReleaseDate = new DateTime(2019, 7, 2)},
             new Movie(){Title = "Moana", ReleaseDate = new DateTime(2016, 11, 23)},
@@ -23,5 +26,7 @@
 
     private void IncrementCount() {
         currentCount++;
+        transient.Value = currentCount;
+        singleton.Value = currentCount;
     }
 }
