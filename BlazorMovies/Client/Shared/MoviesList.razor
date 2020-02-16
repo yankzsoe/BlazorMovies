@@ -14,4 +14,17 @@
     private void DeleteMovie(Movie movie) {
         Movies.Remove(movie);
     }
+
+    protected override void OnInitialized() {
+        Console.WriteLine("OnInitialized Movies.Count is "+Movies.Count.ToString());
+    }
+    protected override void OnParametersSet() {
+        Console.WriteLine("OnParametersSet Movies.Count is "+Movies.Count.ToString());
+    }
+    protected override void OnAfterRender(bool firstRender) {
+        Console.WriteLine($"OnAfterRender is first render? {firstRender}");
+    }
+    protected override bool ShouldRender() {
+        return true;
+    }
 }

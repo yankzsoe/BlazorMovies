@@ -6,7 +6,7 @@
 </div>
 
 @code{
-    List<Movie> movies;
+    List<Movie> movies = new List<Movie>();
     protected async override Task OnInitializedAsync() {
         await Task.Delay(2000);
         movies = new List<Movie>() {
