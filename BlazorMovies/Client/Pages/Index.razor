@@ -2,11 +2,18 @@
 
 <div>
     <h3>Movie</h3>
-    <MoviesList Movies="movies"/>
+    <MoviesList Movies="movies">
+        <NullTemplate>
+            <span style="color:red">This is loading..</span>
+        </NullTemplate>
+        <EmptyTemplate>
+            <span style="color:red">No data to see..</span>
+        </EmptyTemplate>
+    </MoviesList>
 </div>
 
 @code{
-    List<Movie> movies;
+    List<Movie> movies = new List<Movie>();
     protected override void OnInitialized() {
         movies = new List<Movie>() {
             new Movie(){Title = "Spider-Man: Far From Home", ReleaseDate = new DateTime(2019, 7, 2)},

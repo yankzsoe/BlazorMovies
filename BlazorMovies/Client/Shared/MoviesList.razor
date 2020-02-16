@@ -1,7 +1,15 @@
 ﻿@if (Movies == null) {
-    <img src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" />
+    @if (NullTemplate != null) {
+        @NullTemplate
+    } else {
+        <img src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" />
+    }
 } else if (Movies.Count == 0) {
-    <text>There are no records to show</text>
+    @if (EmptyTemplate != null) {
+        @EmptyTemplate
+    } else {
+        <text>There are no records to show</text>
+    }
 } else {
     <input type="checkbox" @bind="displayButtons" />
     @foreach (var movie in Movies) {
@@ -12,6 +20,8 @@
 
 @code {
     [Parameter] public List<Movie> Movies { get; set; }
+    [Parameter] public RenderFragment NullTemplate { get; set; }
+    [Parameter] public RenderFragment EmptyTemplate { get; set; }
     bool displayButtons = false;
 
     private void DeleteMovie(Movie movie) {
