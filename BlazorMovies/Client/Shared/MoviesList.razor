@@ -9,11 +9,22 @@
     </ElementTemplate>
 </GenericList>
 
+<Confirmation @ref="confirmation" onCancel="OnCancel" onConfirm="OnConfirm">
+    <div>Do you wish to delete @movieToBeDelete.Title?</div>
+</Confirmation>
+
 @code {
     [Parameter] public List<Movie> Movies { get; set; }
     bool displayButtons = false;
 
+    Confirmation confirmation;
+    Movie movieToBeDelete;
+
     private async Task DeleteMovie(Movie movie) {
+        movieToBeDelete = movie;
+        confirmation.Show();
+
+        /*
         //Manual
         //var confirmed = await js.InvokeAsync<bool>("confirm", $"Are you sure to delete this {movie.Title}?");
 
@@ -24,8 +35,19 @@
         }
 
         await js.MyFunction("test message..");
+        */
     }
 
+    void OnConfirm() {
+        Movies.Remove(movieToBeDelete);
+        confirmation.Hide();
+        movieToBeDelete = null;
+    }
+
+    void OnCancel() {
+        confirmation.Hide();
+        movieToBeDelete = null;
+    }
     protected override void OnInitialized() {
         Console.WriteLine("OnInitialized Movies.Count is " + Movies.Count.ToString());
     }
