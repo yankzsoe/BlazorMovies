@@ -1,0 +1,20 @@
+﻿@if (Movies == null) {
+    <img src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" />
+} else if (Movies.Count == 0) {
+    <text>There are no records to show</text>
+} else {
+    <input type="checkbox" @bind="displayButtons" />
+    @foreach (var movie in Movies) {
+        <IndividualMovie Movie="movie" DisplayButtons="displayButtons"
+                         DeleteMovie="DeleteMovie" />
+    }
+}
+
+@code {
+    [Parameter] public List<Movie> Movies { get; set; }
+    bool displayButtons = false;
+
+    private void DeleteMovie(Movie movie) {
+        Movies.Remove(movie);
+    }
+}

@@ -5,12 +5,23 @@
 <p>Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<input type="number" @bind="currentCount" />
+<MoviesList Movies="movies" />
 
 @code {
+
+    List<Movie> movies;
+    protected async override Task OnInitializedAsync() {
+        await Task.Delay(3000);
+        movies = new List<Movie>() {
+            new Movie(){Title = "Spider-Man: Far From Home", ReleaseDate = new DateTime(2019, 7, 2)},
+            new Movie(){Title = "Moana", ReleaseDate = new DateTime(2016, 11, 23)},
+            new Movie(){Title = "Inception", ReleaseDate = new DateTime(2010, 7, 16)}
+        };
+    }
     private int currentCount = 0;
 
-    private void IncrementCount()
-    {
+    private void IncrementCount() {
         currentCount++;
     }
 }
