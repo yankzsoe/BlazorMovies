@@ -1,8 +1,25 @@
 ﻿@page "/counter"
 
-<h1>Counter</h1>
+<h1 style="color:@styleClass.Color">Counter</h1>
 
-<p>Current count: @currentCount</p>
+<div style="display:flex">
+    <div style="width:150px">
+        <select @bind="styleClass.Color" class="form-control" style="margin-top:15px">
+            <option value="red">Red</option>
+            <option value="yellow">Yellow</option>
+            <option value="blue">Blue</option>
+        </select>
+    </div>
+    <div style="width:150px">
+        <select @bind="styleClass.Size" class="form-control" style="margin-top:15px">
+            <option value="12px">12px</option>
+            <option value="15px">15px</option>
+            <option value="18px">18px</option>
+        </select>
+    </div>
+</div>
+
+<p style="color:@styleClass.Color;font-size:@styleClass.Size;">Current count: @currentCount</p>
 <p>Singleton count: @singleton.Value</p>
 <p>Transient count: @transient.Value</p>
 

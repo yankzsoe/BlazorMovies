@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static BlazorMovies.Client.Shared.MainLayout;
 
 namespace BlazorMovies.Client.Pages {
     public partial class Counter {
@@ -12,6 +13,7 @@ namespace BlazorMovies.Client.Pages {
         [Inject] TransientServices transient { get; set; }
         [Inject] IJSRuntime js { get; set; }
 
+        [CascadingParameter] public StyleClass styleClass { get; set; }
         private int currentCount = 0;
         private static int currentCountStatic = 0;
 
