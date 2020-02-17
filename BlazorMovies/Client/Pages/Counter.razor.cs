@@ -29,11 +29,18 @@ namespace BlazorMovies.Client.Pages {
         private async Task IncrementCountJavaScript() {
             await js.InvokeVoidAsync("dotnetInstanceInvocation",
                 DotNetObjectReference.Create(this));
+            await js.InvokeVoidAsync("dotnetInstanceIvocationReturnValue",
+                DotNetObjectReference.Create(this));
         }
 
         [JSInvokable]
         public static Task<int> GetCurrentCount() {
             return Task.FromResult(currentCountStatic);
+        }
+
+        [JSInvokable]
+        public int GetValues() {
+            return 1700;
         }
     }
 }

@@ -12,3 +12,10 @@ function dotnetStaticInvocation() {
 function dotnetInstanceInvocation(dotnetHelper) {
     dotnetHelper.invokeMethodAsync("IncrementCount");
 }
+
+function dotnetInstanceIvocationReturnValue(dotnetHelper) {
+    dotnetHelper.invokeMethodAsync("GetValues")
+        .then(result => {
+            console.log("return value is: " + result);
+        });
+}
