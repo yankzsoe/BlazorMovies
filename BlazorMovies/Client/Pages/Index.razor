@@ -1,18 +1,15 @@
 ﻿@page "/"
-@inject SingletonServices singleton
 @inject IRepository repository
-@using static BlazorMovies.Client.Shared.MainLayout;
-<p>Singleton count: @singleton.Value</p>
+
 <div>
-    <h3 style="color:@styleClass.Color;font-size:@styleClass.Size;">Movie</h3>
+    <h3>Movie</h3>
     <MoviesList Movies="movies" />
 </div>
 
 @code{
-    [CascadingParameter] public StyleClass styleClass { get; set; }
     List<Movie> movies = new List<Movie>();
     protected async override Task OnInitializedAsync() {
         await Task.Delay(2000);
         movies = repository.GetMovies();
     }
-}
+} 

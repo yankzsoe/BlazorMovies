@@ -10,17 +10,6 @@
     </div>
 
     <div class="content px-4">
-        <CascadingValue Value="mystyle">
-            @Body
-        </CascadingValue>
+        @Body
     </div>
 </div>
-
-@code{
-    StyleClass mystyle = new StyleClass();
-
-    public class StyleClass {
-        public string Color { get; set; } = "green";
-        public string Size { get; set; } = "12px";
-    }
-}
