@@ -2,6 +2,19 @@
 
 <h3>CreateGenre</h3>
 
-@code {
+<EditForm Model="genre" OnSubmit="Create">
+    <div class="form-group">
+        <label>Name:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="genre.Name" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Save Changes</button>
+</EditForm>
 
+@code {
+    private Genre genre = new Genre();
+    public void Create() {
+        Console.WriteLine(genre.Name);
+    }
 }
