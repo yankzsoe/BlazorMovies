@@ -2,11 +2,13 @@
 
 <h3>CreateGenre</h3>
 
-<EditForm Model="genre" OnSubmit="Create">
+<EditForm Model="genre" OnValidSubmit="Create">
+    <DataAnnotationsValidator/>
     <div class="form-group">
         <label>Name:</label>
         <div>
             <InputText class="form-control" @bind-Value="genre.Name" />
+            <ValidationMessage For="@(()=>genre.Name)"/>
         </div>
     </div>
     <button type="submit" class="btn btn-success">Save Changes</button>
